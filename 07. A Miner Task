@@ -1,0 +1,21 @@
+function solve(input) {
+    let result = {}
+
+    for (let i = 0; i < input.length; i += 2) {
+
+        let resource = input[i]
+        //console.log(resource)
+        let quantity = Number(input[i + 1])
+        //console.log(quantity)
+        if (!result.hasOwnProperty(resource)) {
+            result[resource] = quantity
+        } else {
+            result[resource] += quantity
+        }
+
+        //console.log(result)
+    }
+    for (const [key, value] of Object.entries(result)) {
+        console.log(`${key} -> ${value}`);
+    }
+}
