@@ -1,0 +1,33 @@
+function solve(input) {
+    let counters = {}
+    input.forEach(element => {
+        let [countryName, townName, travelCost] = element.split(' > ');
+        travelCost = Number(travelCost)
+        if (!counters.hasOwnProperty(countryName)) {
+            counters[countryName] = {}
+        }
+        if (!counters[countryName].hasOwnProperty(townName)) {
+            counters[countryName][townName] = travelCost
+        }
+        if (counters[countryName][townName] > travelCost) {
+            counters[countryName][townName] = travelCost
+        }
+    })
+
+    let sortKeys = Object.keys(counters).sort((a, b) => a.localeCompare(b))
+
+    sortKeys.forEach(element => {
+        //console.log(element)
+        //console.log(counters[element])
+        let sortTravelCost = Object.entries(counters[element]).sort((a, b) => a[1] - b[1])
+        //console.log(sortTravelCost)
+
+        let result = []
+        for (let item of sortTravelCost) {
+            result.push(item.join(` -> `))
+            //console.log(item)
+        }
+        console.log(`${element} -> ${result.join(' ')}`)
+        //console.log(result)
+    })
+}
