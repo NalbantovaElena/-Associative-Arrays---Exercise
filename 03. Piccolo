@@ -1,0 +1,29 @@
+function solve(input) {
+    let output = []
+    input.forEach(element => {
+        let [action, numberAuto] = element.split(', ')
+        //console.log(action)
+        //console.log(numberAuto)
+        if (action === 'IN') {
+            if (!output.includes(numberAuto)) {
+                output.push(numberAuto)
+            }
+
+        } else if (action === 'OUT') {
+            if (output.includes(numberAuto)) {
+                let index = output.indexOf(numberAuto)
+                output.splice(index, 1)
+            }
+
+        }
+    });
+    let sortArr = output.sort((a, b) => a.localeCompare(b))
+    if (sortArr.length === 0) {
+        console.log(`Parking Lot is Empty`)
+    } else {
+        sortArr.forEach(element => {
+            console.log(element)
+        })
+    }
+
+}
