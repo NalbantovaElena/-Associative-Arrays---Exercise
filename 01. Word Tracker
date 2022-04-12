@@ -1,0 +1,21 @@
+function solve(input) {
+    let output = {}
+    let searchWord = input.shift().split(' ')
+
+
+    searchWord.forEach(element => {
+        output[element] = 0
+    });
+
+    input.forEach(element => {
+        if (Object.keys(output).includes(element)) {
+            output[element] += 1
+        }
+    })
+    //console.log(output)
+    let sortObj = Object.entries(output).sort((a, b) => b[1] - a[1])
+
+    for (let [key, value] of sortObj) {
+        console.log(`${key} - ${value}`);
+    }
+}
