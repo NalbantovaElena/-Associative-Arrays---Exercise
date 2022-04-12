@@ -1,0 +1,25 @@
+function solve(input) {
+    let employees = {}
+    input.forEach(element => {
+
+        let [companyName, employeeId] = element.split(' -> ')
+        if (!employees.hasOwnProperty(companyName)) {
+            employees[companyName] = []
+        }
+        if (!employees[companyName].includes(employeeId)) {
+            employees[companyName].push(employeeId)
+        }
+
+
+    });
+    //console.log(Object.keys(employees))
+    let sortCompany = Object.keys(employees).sort((a, b) => a.localeCompare(b))
+    for (let employee of sortCompany) {
+        console.log(employee)
+        for (let compId of employees[employee]) {
+            console.log(`-- ${compId}`)
+        }
+
+    }
+    //console.log(sortCompany)
+}
