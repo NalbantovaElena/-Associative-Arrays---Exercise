@@ -1,0 +1,38 @@
+function solve(input) {
+    let countGuest = 0
+    let guestList = {
+        vip: [],
+        regular: []
+    }
+
+    let indexParty = input.indexOf('PARTY')
+    for (let i = 0; i < indexParty; i++) {
+
+        if (input[i].charCodeAt(0) >= 48 & input[i].charCodeAt(0) <= 57) {
+            guestList.vip.push(input[i])
+        } else {
+            guestList.regular.push(input[i])
+        }
+    }
+
+    //console.log(guestList)
+
+
+    for (let i = indexParty + 1; i < input.length; i++) {
+        if (guestList.vip.includes(input[i])) {
+            countGuest += 1
+            let index = guestList.vip.indexOf(input[i])
+            guestList.vip.splice(index, 1)
+        } else if (guestList.regular.includes(input[i])) {
+            countGuest += 1
+            let index = guestList.regular.indexOf(input[i])
+            guestList.regular.splice(index, 1)
+        }
+    }
+    let guestVip = guestList.vip.length
+    let guestRegular = guestList.regular.length
+    countGuest = guestVip + guestRegular
+    console.log(countGuest)
+    console.log(guestList.vip.join('\n'))
+    console.log(guestList.regular.join('\n'))
+}
